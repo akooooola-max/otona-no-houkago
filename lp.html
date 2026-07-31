@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大人の放課後 — 社会人の部活コミュニティ</title>
+<style>
+  :root{
+    --paper:#eef1f7; --ink:#12172a; --muted:#5a6274; --line:#dde2ee;
+    --card:#ffffff; --field:#f5f7fc;
+    --turf:#2b6bff; --turf-deep:#1746c9; --turf-soft:#dde6ff;
+    --dusk1:#06103a; --dusk2:#12308f; --gold:#ff2d4f; --gold-ink:#5a0512;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(20,30,24,.05),0 10px 30px rgba(20,30,24,.07);
+    --sans:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP","Segoe UI",sans-serif;
+    --maxw:960px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --paper:#06080f; --ink:#e9edf7; --muted:#94a0bd; --line:#1e2740;
+      --card:#0f1524; --field:#0b1120; --turf:#4d84ff; --turf-deep:#6f9dff; --turf-soft:#0f1c3f;
+      --dusk1:#04081c; --dusk2:#10276e; --gold:#ff4d68; --gold-ink:#ffd3da;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px rgba(0,0,0,.4); }
+  }
+  :root[data-theme="dark"]{ --paper:#06080f; --ink:#e9edf7; --muted:#94a0bd; --line:#1e2740;
+    --card:#0f1524; --field:#0b1120; --turf:#4d84ff; --turf-deep:#6f9dff; --turf-soft:#0f1c3f;
+    --dusk1:#04081c; --dusk2:#10276e; --gold:#ff4d68; --gold-ink:#ffd3da;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 34px rgba(0,0,0,.4); }
+  :root[data-theme="light"]{ --paper:#eef1f7; --ink:#12172a; --muted:#5a6274; --line:#dde2ee;
+    --card:#ffffff; --field:#f5f7fc; --turf:#2b6bff; --turf-deep:#1746c9; --turf-soft:#dde6ff;
+    --dusk1:#06103a; --dusk2:#12308f; --gold:#ff2d4f; --gold-ink:#5a0512;
+    --shadow:0 1px 2px rgba(20,30,24,.05),0 10px 30px rgba(20,30,24,.07); }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.75;-webkit-font-smoothing:antialiased;font-feature-settings:"palt"}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  section{padding:74px 0}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--turf-deep);text-transform:uppercase;margin-bottom:14px}
+  h2{font-size:clamp(24px,4.4vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.3;text-wrap:balance}
+  .lead{font-size:17px;color:var(--muted);margin-top:16px;max-width:34em}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--dusk1),var(--dusk2));color:#eafff2;padding:0}
+  .hero .wrap{padding-top:96px;padding-bottom:104px;position:relative;z-index:2}
+  .hero-sky{position:absolute;inset:0;z-index:1;opacity:.95;
+    background:radial-gradient(52% 40% at 16% -6%,rgba(140,190,255,.42),transparent 55%),radial-gradient(52% 40% at 84% -6%,rgba(140,190,255,.34),transparent 55%),radial-gradient(120% 85% at 82% 12%,rgba(255,45,79,.34),transparent 50%),radial-gradient(95% 75% at 10% 98%,rgba(43,107,255,.44),transparent 55%)}
+  .hero-line{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.14);z-index:2}
+  .htag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:7px 15px;border-radius:999px;color:#eafff2}
+  .hero h1{font-size:clamp(34px,7vw,62px);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin:22px 0 0;text-wrap:balance}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p.sub{font-size:clamp(16px,2.4vw,20px);color:#cde9d8;margin-top:22px;max-width:30em;line-height:1.8}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-size:16px;font-weight:800;border-radius:999px;padding:15px 30px;cursor:pointer;border:none;text-decoration:none;transition:transform .12s ease}
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:var(--gold);color:#fff}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#eafff2;border:1px solid rgba(255,255,255,.28)}
+  .hero-stats{display:flex;gap:30px;margin-top:44px;flex-wrap:wrap}
+  .hero-stats b{display:block;font-size:26px;font-weight:800;color:#fff}
+  .hero-stats span{font-size:13px;color:#a9cdb8}
+
+  /* empathy */
+  .empathy{text-align:center}
+  .empathy .wrap{max-width:640px}
+  .empathy h2 em{font-style:normal;color:var(--turf-deep);border-bottom:3px solid var(--turf-soft)}
+  .checks{margin-top:30px;display:flex;flex-direction:column;gap:12px;text-align:left}
+  .check{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 18px;box-shadow:var(--shadow)}
+  .check .mk{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--turf-soft);color:var(--turf-deep);display:grid;place-items:center;font-size:14px;font-weight:800;margin-top:2px}
+  .check p{font-size:15.5px}
+
+  /* concept */
+  .concept .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+  @media(max-width:720px){.concept .grid{grid-template-columns:1fr;gap:28px}}
+  .concept .art{aspect-ratio:4/3;border-radius:20px;background:linear-gradient(150deg,var(--dusk1),var(--dusk2));position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .concept .art .glow{position:absolute;inset:0;background:radial-gradient(80% 70% at 75% 15%,rgba(90,150,255,.55),transparent 50%),radial-gradient(70% 60% at 18% 92%,rgba(255,45,79,.32),transparent 55%)}
+  .concept .art .goal{position:absolute;left:8%;right:8%;bottom:12%;height:44%;border:2.5px solid rgba(255,255,255,.35);border-bottom:none;border-radius:8px 8px 0 0}
+  .concept .art .goal:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 13px,rgba(255,255,255,.14) 13px 14px),repeating-linear-gradient(0deg,transparent 0 13px,rgba(255,255,255,.14) 13px 14px)}
+  .concept .art .ball{position:absolute;left:44%;bottom:16%;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+  .concept p.body{font-size:16.5px;margin-top:18px;color:var(--ink)}
+  .concept p.body + p.body{margin-top:14px}
+  .pull{margin-top:22px;font-size:19px;font-weight:800;color:var(--turf-deep);line-height:1.5}
+
+  /* activities */
+  .acts{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:34px}
+  @media(max-width:640px){.act-grid{grid-template-columns:1fr}}
+  .act{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--paper);position:relative}
+  .act.flag{border:2px solid var(--turf);background:var(--turf-soft)}
+  .act .ico{font-size:26px}
+  .act h3{font-size:18px;font-weight:800;margin:12px 0 6px;display:flex;align-items:center;gap:9px}
+  .act .badge{font-size:11px;font-weight:800;background:var(--turf);color:#fff;padding:3px 9px;border-radius:999px}
+  .act p{font-size:14.5px;color:var(--muted)}
+
+  /* perks */
+  .perks .list{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.perks .list{grid-template-columns:1fr}}
+  .perk{display:flex;gap:13px;align-items:flex-start}
+  .perk .n{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--turf);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:800}
+  .perk b{font-weight:800;font-size:15.5px}
+  .perk p{font-size:14px;color:var(--muted);margin-top:2px}
+
+  /* price */
+  .price{text-align:center}
+  .price .wrap{max-width:520px}
+  .price-card{margin-top:28px;background:var(--card);border:2px solid var(--turf);border-radius:22px;padding:38px 30px;box-shadow:var(--shadow)}
+  .price-tag{font-size:15px;color:var(--muted)}
+  .price-num{font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1;margin:6px 0 2px}
+  .price-num small{font-size:19px;font-weight:700;color:var(--muted)}
+  .price-note{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .price-incl{list-style:none;margin:24px 0 0;padding:22px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px;text-align:left}
+  .price-incl li{display:flex;gap:10px;font-size:15px}
+  .price-incl li i{color:var(--turf-deep);font-weight:800;font-style:normal}
+  .price .btn-primary{background:var(--turf);color:#fff;margin-top:26px;width:100%;justify-content:center}
+
+  /* for-you */
+  .foryou .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  @media(max-width:640px){.foryou .row{grid-template-columns:1fr}}
+  .fy{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-size:15px;display:flex;gap:11px;align-items:flex-start}
+  .fy .dot{color:var(--turf-deep);font-weight:800;margin-top:1px}
+
+  /* host */
+  .host .card{display:flex;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:var(--shadow)}
+  @media(max-width:560px){.host .card{flex-direction:column;text-align:center}}
+  .host .ava{flex-shrink:0;width:88px;height:88px;border-radius:50%;background:linear-gradient(150deg,var(--dusk1),var(--turf));display:grid;place-items:center;color:#fff;font-size:30px;font-weight:800}
+  .host h3{font-size:19px;font-weight:800}
+  .host .role{font-size:13px;color:var(--turf-deep);font-weight:700;margin:2px 0 10px}
+  .host p{font-size:15px;color:var(--muted)}
+
+  /* faq */
+  .faq details{border-bottom:1px solid var(--line);padding:4px 0}
+  .faq summary{cursor:pointer;list-style:none;padding:18px 4px;font-size:16.5px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--turf-soft);color:var(--turf-deep);display:grid;place-items:center;font-size:17px;transition:transform .2s}
+  .faq details[open] summary .pm{transform:rotate(45deg)}
+  .faq p{padding:0 4px 20px;font-size:15px;color:var(--muted)}
+
+  /* closing */
+  .closing{background:linear-gradient(160deg,var(--dusk1),var(--dusk2));color:#eafff2;text-align:center;position:relative;overflow:hidden}
+  .closing-sky{position:absolute;inset:0;background:radial-gradient(80% 75% at 30% 0%,rgba(43,107,255,.4),transparent 55%),radial-gradient(70% 70% at 82% 8%,rgba(255,45,79,.28),transparent 55%)}
+  .closing .wrap{position:relative;z-index:2;max-width:600px}
+  .closing h2{color:#fff}
+  .closing p{color:#cde9d8;margin-top:16px;font-size:17px}
+  .closing .btn-primary{margin-top:30px;background:var(--gold);color:#fff}
+  footer{text-align:center;padding:30px 22px;color:var(--muted);font-size:13px}
+  .draft{background:var(--gold);color:#fff;font-size:12.5px;font-weight:700;text-align:center;padding:9px 16px;line-height:1.5}
+</style>
+</head>
+<body>
+
+<div class="draft">※ メンバーの声・主宰プロフィールはサンプルです（本番で差し替え）。部名・料金は確定。</div>
+
+<section class="hero">
+  <div class="hero-sky"></div>
+  <div class="wrap">
+    <span class="htag">⚽ 社会人の部活コミュニティ</span>
+    <h1>大人にも、<br><em>放課後</em>がいる。</h1>
+    <p class="sub">仕事、家、たまの飲み会。その繰り返しに、ちょっとだけ「部活」を戻しませんか。月イチで集まって、汗をかいて、また月曜に帰る。そんな居場所です。</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#price">入部する</a>
+      <a class="btn btn-ghost" href="#concept">どんな部活？</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>自社グラウンド</b><span>専用コートで活動</span></div>
+      <div><b>月イチ〜</b><span>無理のないペース</span></div>
+      <div><b>初心者歓迎</b><span>運動が苦手でもOK</span></div>
+    </div>
+  </div>
+  <div class="hero-line"></div>
+</section>
+
+<section class="empathy">
+  <div class="wrap">
+    <span class="eyebrow">こんな気持ち、ありませんか</span>
+    <h2>社会人になってから、<em>本気で何かをする仲間</em>、減っていませんか。</h2>
+    <div class="checks">
+      <div class="check"><span class="mk">✓</span><p>運動不足なのは分かってる。でも一人だと、どうしても続かない。</p></div>
+      <div class="check"><span class="mk">✓</span><p>新しい友達なんて、社会人になってからほとんど増えていない。</p></div>
+      <div class="check"><span class="mk">✓</span><p>学生の頃みたいに、利害関係なく笑い合える時間がなつかしい。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="concept" id="concept">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <span class="eyebrow">コンセプト</span>
+        <h2>「また来週な」が言える、大人の部活。</h2>
+        <p class="body">大人の放課後は、社会人のための"部活コミュニティ"です。看板の活動はフットサル。自社のグラウンドに月イチで集まって、思いっきり体を動かします。</p>
+        <p class="body">うまいも下手も関係ありません。学生のときの部活が楽しかったのは、勝ち負けより「そこに仲間がいた」から。あの感覚を、もう一度。</p>
+        <p class="pull">見にくる人じゃなく、<br>一緒につくる仲間になる。</p>
+      </div>
+      <div class="art"><div class="glow"></div><div class="goal"></div><div class="ball"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="acts">
+  <div class="wrap">
+    <span class="eyebrow">活動内容</span>
+    <h2>フットサルを軸に、いろんな「部活」を。</h2>
+    <div class="act-grid">
+      <div class="act flag">
+        <div class="ico">⚽</div>
+        <h3>フットサル部 <span class="badge">看板</span></h3>
+        <p>月イチの定例活動。自社グラウンドで開催。初心者・運動苦手さんも大歓迎。まずはここから。</p>
+      </div>
+      <div class="act">
+        <div class="ico">🔥</div>
+        <h3>打ち上げ・BBQ部</h3>
+        <p>動いたあとは、みんなでごはん。むしろこっちが本番かも。ここで仲が深まります。</p>
+      </div>
+      <div class="act">
+        <div class="ico">💬</div>
+        <h3>オンライン部室</h3>
+        <p>活動日以外も、いつでもつながる交流の場。日常のちょっとした会話から仲間になる。</p>
+      </div>
+      <div class="act">
+        <div class="ico">🎉</div>
+        <h3>みんなで企画</h3>
+        <p>「次は何やる？」をメンバーで決める。ミニ大会、他スポーツ、季節イベント。部活は自分たちで育てる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="perks">
+  <div class="wrap">
+    <span class="eyebrow">会員特典</span>
+    <h2>入部すると、できること。</h2>
+    <div class="list">
+      <div class="perk"><span class="n">⚽</span><div><b>定例フットサルに参加し放題</b><p>自社グラウンドで開催。会員なら参加費コミ／割引。</p></div></div>
+      <div class="perk"><span class="n">📱</span><div><b>専用アプリで出欠・仲間とつながる</b><p>今週の開催に出欠ワンタップ。一緒に蹴った仲間が残る。</p></div></div>
+      <div class="perk"><span class="n">💬</span><div><b>オンライン部室でいつでも交流</b><p>活動日以外もつながり続く。孤独になりにくい。</p></div></div>
+      <div class="perk"><span class="n">🏟️</span><div><b>グラウンドの優先利用</b><p>会員は予約優先。自主練や仲間内の利用もしやすく。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="price">
+  <div class="wrap">
+    <span class="eyebrow">料金</span>
+    <h2>お小遣いの範囲で、居場所が持てる。</h2>
+    <div class="price-card">
+      <div class="price-tag">月額会費</div>
+      <div class="price-num">1,980<small>円/月</small></div>
+      <div class="price-note">飲み会1回分より安く。いつでも退部できます。</div>
+      <ul class="price-incl">
+        <li><i>✓</i> 月イチの定例フットサル 参加費コミ</li>
+        <li><i>✓</i> 専用アプリ・オンライン部室 使い放題</li>
+        <li><i>✓</i> BBQ・企画イベントへの参加権</li>
+        <li><i>✓</i> グラウンド優先利用</li>
+      </ul>
+      <a class="btn btn-primary" href="#closing">入部する</a>
+    </div>
+  </div>
+</section>
+
+<section class="foryou">
+  <div class="wrap">
+    <span class="eyebrow">こんな人に</span>
+    <h2>ひとつでも当てはまれば、たぶん合います。</h2>
+    <div class="row">
+      <div class="fy"><span class="dot">●</span><div>運動不足を、楽しく解消したい</div></div>
+      <div class="fy"><span class="dot">●</span><div>社会人になって、友達を増やしたい</div></div>
+      <div class="fy"><span class="dot">●</span><div>ガチじゃなく、緩く続けられる場がほしい</div></div>
+      <div class="fy"><span class="dot">●</span><div>一人参加でも、馴染める場を探している</div></div>
+      <div class="fy"><span class="dot">●</span><div>学生の頃の部活が、ちょっと恋しい</div></div>
+      <div class="fy"><span class="dot">●</span><div>利害抜きで笑える仲間がほしい</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="host">
+  <div class="wrap">
+    <span class="eyebrow">主宰</span>
+    <h2>旗を振る人。</h2>
+    <div class="card">
+      <div class="ava">ひ</div>
+      <div>
+        <h3>ひとつ</h3>
+        <div class="role">大人の放課後 部長</div>
+        <p>複数の事業を営むかたわら、「大人になっても本気で遊べる場所がほしい」とこの部活を立ち上げました。うまさより、また来たくなる空気を大事にします。まずは気軽に、ボールを蹴りにきてください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="eyebrow">よくある質問</span>
+    <h2>不安、先に消しておきます。</h2>
+    <details><summary>フットサル初心者でも大丈夫？<span class="pm">＋</span></summary><p>大丈夫です。むしろ初心者・ブランク組が中心。うまさを競う場ではなく、体を動かして仲間をつくる場なので、経験ゼロでも浮きません。</p></details>
+    <details><summary>運動がとにかく苦手なんですが…<span class="pm">＋</span></summary><p>問題ありません。ゆるく参加してOK、見学や途中休憩も自由。BBQやオンライン部室だけ参加する人もいます。</p></details>
+    <details><summary>一人で入っても馴染めますか？<span class="pm">＋</span></summary><p>ほとんどの人が一人参加スタートです。専用アプリで事前に「誰が来るか」も分かるので、初回でも安心して来られます。</p></details>
+    <details><summary>毎回必ず参加しないとダメ？<span class="pm">＋</span></summary><p>いいえ。来られるときに来ればOK。会費は"居場所の維持費"のような感覚で、無理のないペースで続けられます。</p></details>
+    <details><summary>退部はいつでもできる？<span class="pm">＋</span></summary><p>いつでもできます。合わなければ気軽にやめてください。引き止めません。</p></details>
+  </div>
+</section>
+
+<section class="closing" id="closing">
+  <div class="closing-sky"></div>
+  <div class="wrap">
+    <h2>次の放課後で、会いましょう。</h2>
+    <p>難しく考えなくて大丈夫。まずは一度、ボールを蹴りに来るところから。あなたの居場所を、用意して待っています。</p>
+    <a class="btn btn-primary" href="#">入部する</a>
+  </div>
+</section>
+
+<footer>大人の放課後 ／ 運営：hitotsu company　※本ページはたたき台です</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href'); if(id.length<2)return;
+      var t=document.querySelector(id); if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    });
+  });
+</script>
+</body>
+</html>
