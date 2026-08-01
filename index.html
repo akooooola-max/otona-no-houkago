@@ -133,6 +133,15 @@
   .price-incl li i{color:var(--blue-bright);font-weight:900;font-style:normal}
   .price .btn-red,.price .btn-blue{margin-top:26px;width:100%;justify-content:center}
   .btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(59,123,255,.4)}
+  .join{text-align:center;background:radial-gradient(90% 70% at 50% 0%,#0d3a22,transparent 60%),var(--bg)}
+  .join .steps{margin:32px 0 8px;display:flex;flex-direction:column;gap:14px;text-align:left}
+  .join .step{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+  .join .step .sn{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#06C755;color:#fff;display:grid;place-items:center;font-size:15px;font-weight:900}
+  .join .step b{font-size:15.5px;font-weight:800;display:block}
+  .join .step p{font-size:14px;color:var(--muted);margin-top:4px}
+  .code{display:inline-block;background:rgba(6,199,85,.16);color:#5ce89a;font-weight:900;padding:2px 10px;border-radius:8px;letter-spacing:.04em}
+  .btn-line{background:#06C755;color:#fff;box-shadow:0 10px 30px rgba(6,199,85,.35);margin-top:24px;width:100%;justify-content:center}
+  .joinnote{margin-top:14px;font-size:13.5px;color:var(--muted)}
   .price-card.free{border-color:rgba(255,255,255,.28)}
   .price-card.free .ribbon{background:rgba(255,255,255,.14);color:#fff}
   .lead-c{color:#c3d0ee;font-size:15.5px;margin-top:14px}
@@ -190,7 +199,7 @@
     <h1 class="reveal d1">大人にも、<br><span class="r">放課後</span>がいる。</h1>
     <p class="sub reveal d2">月イチで集まって、汗をかいて、また月曜に帰る。<br>フットサルを軸にした、大人のための居場所。<br><b style="color:#fff">入部は無料です。</b></p>
     <div class="cta-row reveal d3">
-      <a class="btn btn-red" href="#price">無料で入部する</a>
+      <a class="btn btn-red" href="#join">無料で入部する</a>
       <a class="btn btn-ghost" href="#concept">どんな部活？</a>
     </div>
   </div>
@@ -257,8 +266,22 @@
         <li><i>✓</i> 専用アプリで出欠・仲間とつながる</li>
         <li><i>✓</i> BBQ・企画イベント参加権</li>
       </ul>
-      <a class="btn btn-red" href="#closing">無料で入部する</a>
+      <a class="btn btn-red" href="#join">無料で入部する</a>
     </div>
+  </div>
+</section>
+
+<section class="sec join" id="join">
+  <div class="wrap">
+    <p class="eyebrow reveal">入部の手順</p>
+    <h2 class="reveal d1">3ステップで、<br>仲間になれます。</h2>
+    <div class="steps">
+      <div class="step reveal d1"><span class="sn">1</span><div><b>下のボタンから、部室（LINE）へ</b><p>オープンチャットが開きます。LINEの友だち登録は不要・匿名で参加できます。</p></div></div>
+      <div class="step reveal d2"><span class="sn">2</span><div><b>参加コードを入力</b><p>コードは <span class="code">キックオフ</span> です。サイトの合言葉と同じ。</p></div></div>
+      <div class="step reveal d3"><span class="sn">3</span><div><b>参加完了。次の活動日に来てください</b><p>初回の人は、部室で「はじめまして」とひとこと言ってもらえると助かります。</p></div></div>
+    </div>
+    <a class="btn btn-line reveal d3" id="lineBtn" href="#">LINEオープンチャットに参加する</a>
+    <p class="joinnote reveal d3">参加コード：<span class="code">キックオフ</span>　／　もちろん無料です。</p>
   </div>
 </section>
 
@@ -318,7 +341,7 @@
     <h2 class="reveal d1">グラウンドで、<span class="r">待ってる。</span></h2>
     <p class="reveal d2">動ける服と、ちょっとの勇気だけ持って来てください。あなたの居場所、もう用意してあります。</p>
     <div class="cta-row reveal d3">
-      <a class="btn btn-red" href="#">無料で入部する</a>
+      <a class="btn btn-red" href="#join">無料で入部する</a>
       <a class="btn btn-ghost" href="#ai">AI自習室を見る</a>
     </div>
   </div>
@@ -328,6 +351,10 @@
 </div>
 
 <script>
+  /* ▼ LINEオープンチャットの招待URLをここに入れる（"" のままだとボタンは無効） */
+  var LINE_URL = "";
+  (function(){ var b=document.getElementById('lineBtn'); if(b&&LINE_URL){ b.href=LINE_URL; b.target="_blank"; b.rel="noopener"; } })();
+
   function revealScan(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
     document.querySelectorAll('.reveal:not(.in)').forEach(function(el){
