@@ -132,8 +132,9 @@
   .price-incl{list-style:none;margin:24px 0 0;padding:22px 4px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px;text-align:left}
   .price-incl li{display:flex;gap:11px;font-size:15px}
   .price-incl li i{color:var(--blue-bright);font-weight:900;font-style:normal}
-  .price .btn-red,.price .btn-blue{margin-top:26px;width:100%;justify-content:center}
+  .price .btn-red,.price .btn-blue,.price .btn-discord{margin-top:26px;width:100%;justify-content:center}
   .btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(59,123,255,.4)}
+  .btn-discord{background:#5865F2;color:#fff;box-shadow:0 10px 30px rgba(88,101,242,.4)}
   .join{text-align:center;background:radial-gradient(90% 70% at 50% 0%,#0d3a22,transparent 60%),var(--bg)}
   .join .steps{margin:32px 0 8px;display:flex;flex-direction:column;gap:14px;text-align:left}
   .join .step{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
@@ -225,7 +226,7 @@
       <div class="act main reveal d1"><div class="ico">⚽</div><h3>フットサル <span class="b">看板</span></h3><p>月イチの定例活動。自社グラウンドで開催。初心者・運動が苦手な人も大歓迎。まずはここから。</p></div>
       <div class="act reveal d2"><div class="ico">🔥</div><h3>打ち上げ・BBQ</h3><p>動いたあとのごはんが本番。ここで一気に仲良くなる、部活の醍醐味。</p></div>
       <div class="act reveal d4"><div class="ico">🎉</div><h3>みんなで企画</h3><p>「次は何やる？」をメンバーで決める。部活は自分たちで育てる。</p></div>
-      <a class="act pay reveal d4" href="#ai"><div class="ico">💻</div><h3>AI自習室 <span class="b pay">有料</span></h3><p>仕事や副業を、AIを使ってもくもく進める部屋。ここだけ月額制です。</p><span class="tap">タップして詳しく →</span></a>
+      <a class="act pay reveal d4" href="#ai"><div class="ico">💻</div><h3>AI自習室 <span class="b pay">有料</span></h3><p>Discordに集まって、AIを使いながらもくもく作業する部屋。ここだけ月額制です。</p><span class="tap">タップして詳しく →</span></a>
     </div>
   </div>
 </section>
@@ -285,18 +286,18 @@
   <div class="wrap">
     <p class="eyebrow reveal">オプション</p>
     <h2 class="reveal d1">もっと先へ行きたい人へ。<br><span class="r">AI自習室</span></h2>
-    <p class="lead-c reveal d2">仕事や副業を、AIを使ってもくもく進める部屋。<br>部活の仲間と、手を動かす時間を共有します。</p>
+    <p class="lead-c reveal d2">仕事や副業を、AIを使ってもくもく進める部屋。<br>Discordの音声チャンネルに集まって、手を動かす時間を共有します。</p>
     <div class="price-card reveal d2">
       <span class="ribbon">AI自習室</span>
       <div class="price-num">2,980<small>円/月</small></div>
       <div class="price-note">入部している人だけが入れる部屋です。いつでも退会OK。</div>
       <ul class="price-incl">
-        <li><i>✓</i> オンラインもくもく会（AIを使って作業）</li>
+        <li><i>✓</i> もくもく会（つないで各自作業）</li>
+        <li><i>✓</i> 画面共有でその場で相談できる</li>
         <li><i>✓</i> AI活用の実践ノウハウ共有</li>
-        <li><i>✓</i> つまずいたら部長に質問できる</li>
-        <li><i>✓</i> 副業・仕事の相談も歓迎</li>
+        <li><i>✓</i> 教材・プロンプト集がたまる</li>
       </ul>
-      <a class="btn btn-blue" href="#closing">AI自習室に申し込む</a>
+      <a class="btn btn-discord" id="discordBtn" href="#">Discordの自習室に入る</a>
       <p class="price-note" style="margin-top:14px">※ 部活そのものは無料のままです。</p>
     </div>
   </div>
@@ -324,6 +325,7 @@
       <details open><summary>本当に無料で入れるの？<span class="pm">＋</span></summary><p>はい。フットサルへの参加も、打ち上げやイベントも無料です。有料なのは「AI自習室」だけで、入りたい人だけが申し込む形です。入部後に勝手に課金されることはありません。</p></details>
       <details><summary>初心者・運動が苦手でも大丈夫？<span class="pm">＋</span></summary><p>大丈夫です。メンバーもほぼ初心者スタート。うまさを競う場ではないので、経験ゼロでも浮きません。見学や途中休憩も自由です。</p></details>
       <details><summary>女性ひとり・一人参加でも馴染める？<span class="pm">＋</span></summary><p>ほとんどの方が一人参加スタート。男女ミックスで激しすぎず、アプリで「誰が来るか」も事前に分かるので、初回から安心です。</p></details>
+      <details><summary>AI自習室はどこでやるの？<span class="pm">＋</span></summary><p>Discord（無料の通話・チャットアプリ）を使います。音声チャンネルにつないで各自作業する「もくもく会」形式です。使い方は入室後にご案内するので、初めてでも大丈夫です。</p></details>
       <details><summary>退部はいつでもできる？<span class="pm">＋</span></summary><p>いつでもできます。合わなければ気軽に。引き止めは一切しません。</p></details>
     </div>
   </div>
@@ -349,7 +351,14 @@
 <script>
   /* ▼ LINEオープンチャットの招待URLをここに入れる（"" のままだとボタンは無効） */
   var LINE_URL = "https://line.me/ti/g2/HGhfq7TP8n9k1hts17mw2xbcZh7aQKqqJAJaYQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default";
-  (function(){ var b=document.getElementById('lineBtn'); if(b&&LINE_URL){ b.href=LINE_URL; b.target="_blank"; b.rel="noopener"; } })();
+  /* ▼ Discord（AI自習室）の招待URLをここに入れる */
+  var DISCORD_URL = "";
+  (function(){
+    [['lineBtn',LINE_URL],['discordBtn',DISCORD_URL]].forEach(function(p){
+      var b=document.getElementById(p[0]);
+      if(b&&p[1]){ b.href=p[1]; b.target="_blank"; b.rel="noopener"; }
+    });
+  })();
 
   function revealScan(){
     var vh=window.innerHeight||document.documentElement.clientHeight;
