@@ -100,6 +100,10 @@
   .act h3{font-size:18px;font-weight:900;margin:10px 0 6px;display:flex;align-items:center;gap:10px}
   .act .b{font-size:11px;font-weight:900;color:#fff;background:var(--red);padding:3px 10px;border-radius:999px}
   .act p{font-size:14.5px;color:var(--muted)}
+  a.act{display:block;text-decoration:none;color:inherit}
+  .act.pay{border:1.5px solid var(--blue);background:linear-gradient(180deg,rgba(59,123,255,.14),transparent)}
+  .act .b.pay{background:var(--blue)}
+  .act .tap{display:inline-block;margin-top:12px;font-size:13.5px;font-weight:800;color:var(--blue-bright)}
 
   .perk{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line)}
   .perk:last-child{border-bottom:none}
@@ -118,7 +122,11 @@
   .price-incl{list-style:none;margin:24px 0 0;padding:22px 4px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px;text-align:left}
   .price-incl li{display:flex;gap:11px;font-size:15px}
   .price-incl li i{color:var(--blue-bright);font-weight:900;font-style:normal}
-  .price .btn-red{margin-top:26px;width:100%;justify-content:center}
+  .price .btn-red,.price .btn-blue{margin-top:26px;width:100%;justify-content:center}
+  .btn-blue{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(59,123,255,.4)}
+  .price-card.free{border-color:rgba(255,255,255,.28)}
+  .price-card.free .ribbon{background:rgba(255,255,255,.14);color:#fff}
+  .lead-c{color:#c3d0ee;font-size:15.5px;margin-top:14px}
 
   .foryou .row{display:flex;flex-direction:column;gap:12px;margin-top:30px}
   .fy{padding:15px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel);font-size:15px;display:flex;gap:12px}
@@ -162,13 +170,14 @@
     <div class="badges reveal">
       <span class="hbadge">社会人の部活</span>
       <span class="hbadge">男女ミックス</span>
-      <span class="hbadge r">初心者歓迎</span>
+      <span class="hbadge">初心者歓迎</span>
+      <span class="hbadge r">入部無料</span>
     </div>
     <p class="eyebrow reveal d1">OTONA NO HOUKAGO</p>
     <h1 class="reveal d1">大人にも、<br><span class="r">放課後</span>がいる。</h1>
-    <p class="sub reveal d2">月イチで集まって、汗をかいて、また月曜に帰る。<br>フットサルを軸にした、大人のための居場所。</p>
+    <p class="sub reveal d2">月イチで集まって、汗をかいて、また月曜に帰る。<br>フットサルを軸にした、大人のための居場所。<br><b style="color:#fff">入部は無料です。</b></p>
     <div class="cta-row reveal d3">
-      <a class="btn btn-red" href="#price">入部する</a>
+      <a class="btn btn-red" href="#price">無料で入部する</a>
       <a class="btn btn-ghost" href="#concept">どんな部活？</a>
     </div>
   </div>
@@ -206,39 +215,61 @@
       <div class="act reveal d2"><div class="ico">🔥</div><h3>打ち上げ・BBQ</h3><p>動いたあとのごはんが本番。ここで一気に仲良くなる、部活の醍醐味。</p></div>
       <div class="act reveal d3"><div class="ico">💬</div><h3>オンライン部室</h3><p>活動日以外もつながる交流の場。日常のちょっとした会話から仲間になる。</p></div>
       <div class="act reveal d4"><div class="ico">🎉</div><h3>みんなで企画</h3><p>「次は何やる？」をメンバーで決める。部活は自分たちで育てる。</p></div>
+      <a class="act pay reveal d4" href="#ai"><div class="ico">💻</div><h3>AI自習室 <span class="b pay">有料</span></h3><p>仕事や副業を、AIを使ってもくもく進める部屋。ここだけ月額制です。</p><span class="tap">タップして詳しく →</span></a>
     </div>
   </div>
 </section>
 
 <section class="sec perks">
   <div class="wrap">
-    <p class="eyebrow reveal">会員特典</p>
-    <h2 class="reveal d1">入部すると、できること。</h2>
+    <p class="eyebrow reveal">入部特典</p>
+    <h2 class="reveal d1">入部すると、できること。<br>ぜんぶ無料です。</h2>
     <div style="margin-top:24px">
-      <div class="perk reveal d1"><span class="n">⚽</span><div><b>定例フットサルに参加し放題</b><p>自社グラウンドで開催。参加費コミ。</p></div></div>
+      <div class="perk reveal d1"><span class="n">⚽</span><div><b>定例フットサルに参加できる</b><p>自社グラウンドで開催。初心者・運動が苦手でもOK。</p></div></div>
       <div class="perk reveal d1"><span class="n">📱</span><div><b>専用アプリで出欠・仲間とつながる</b><p>今週の開催に出欠ワンタップ。一緒に蹴った仲間が残る。</p></div></div>
       <div class="perk reveal d2"><span class="n">💬</span><div><b>オンライン部室でいつでも交流</b><p>活動日以外もつながり続く。</p></div></div>
-      <div class="perk reveal d2"><span class="n">💡</span><div><b>部長のAIひとくちメモ</b><p>仕事がラクになるAI小ネタをゆるっと配信。</p></div></div>
-      <div class="perk reveal d3"><span class="n">🏟️</span><div><b>グラウンドの優先利用</b><p>会員は予約優先。自主練もしやすく。</p></div></div>
+      <div class="perk reveal d2"><span class="n">🍖</span><div><b>打ち上げ・BBQ・企画イベント</b><p>「次は何やる？」をみんなで決める。</p></div></div>
+      <div class="perk reveal d3"><span class="n">💡</span><div><b>部長のAIひとくちメモ</b><p>仕事がラクになるAI小ネタをゆるっと配信。</p></div></div>
     </div>
   </div>
 </section>
 
 <section class="sec price" id="price">
   <div class="wrap">
-    <p class="eyebrow reveal">会費</p>
-    <h2 class="reveal d1">飲み会1回分より、安い。</h2>
-    <div class="price-card reveal d2">
-      <span class="ribbon">月額会費</span>
-      <div class="price-num"><span id="pn">1,980</span><small>円/月</small></div>
-      <div class="price-note">いつでも退部OK・引き止めなし。</div>
+    <p class="eyebrow reveal">入部について</p>
+    <h2 class="reveal d1">入部は、無料。</h2>
+    <div class="price-card free reveal d2">
+      <span class="ribbon">部員（基本）</span>
+      <div class="price-num"><span id="pn">0</span><small>円</small></div>
+      <div class="price-note">フットサルも交流も、お金はかかりません。</div>
       <ul class="price-incl">
-        <li><i>✓</i> 月イチの定例フットサル 参加費コミ</li>
-        <li><i>✓</i> 専用アプリ・オンライン部室 使い放題</li>
+        <li><i>✓</i> 定例フットサルに参加できる</li>
+        <li><i>✓</i> 専用アプリ・オンライン部室</li>
         <li><i>✓</i> BBQ・企画イベント参加権</li>
-        <li><i>✓</i> グラウンド優先利用</li>
+        <li><i>✓</i> 部長のAIひとくちメモ</li>
       </ul>
-      <a class="btn btn-red" href="#closing">入部する</a>
+      <a class="btn btn-red" href="#closing">無料で入部する</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec price" id="ai">
+  <div class="wrap">
+    <p class="eyebrow reveal">オプション</p>
+    <h2 class="reveal d1">もっと先へ行きたい人へ。<br><span class="r">AI自習室</span></h2>
+    <p class="lead-c reveal d2">仕事や副業を、AIを使ってもくもく進める部屋。<br>部活の仲間と、手を動かす時間を共有します。</p>
+    <div class="price-card reveal d2">
+      <span class="ribbon">AI自習室</span>
+      <div class="price-num">2,980<small>円/月</small></div>
+      <div class="price-note">入部している人だけが入れる部屋です。いつでも退会OK。</div>
+      <ul class="price-incl">
+        <li><i>✓</i> オンラインもくもく会（AIを使って作業）</li>
+        <li><i>✓</i> AI活用の実践ノウハウ共有</li>
+        <li><i>✓</i> つまずいたら部長に質問できる</li>
+        <li><i>✓</i> 副業・仕事の相談も歓迎</li>
+      </ul>
+      <a class="btn btn-blue" href="#closing">AI自習室に申し込む</a>
+      <p class="price-note" style="margin-top:14px">※ 部活そのものは無料のままです。</p>
     </div>
   </div>
 </section>
@@ -262,7 +293,8 @@
     <p class="eyebrow reveal">よくある質問</p>
     <h2 class="reveal d1">不安、先に消しておきます。</h2>
     <div style="margin-top:20px" class="reveal d1">
-      <details open><summary>初心者・運動が苦手でも大丈夫？<span class="pm">＋</span></summary><p>大丈夫です。メンバーもほぼ初心者スタート。うまさを競う場ではないので、経験ゼロでも浮きません。見学や途中休憩も自由です。</p></details>
+      <details open><summary>本当に無料で入れるの？<span class="pm">＋</span></summary><p>はい。フットサルへの参加も、オンライン部室での交流も無料です。有料なのは「AI自習室」だけで、入りたい人だけが申し込む形です。入部後に勝手に課金されることはありません。</p></details>
+      <details><summary>初心者・運動が苦手でも大丈夫？<span class="pm">＋</span></summary><p>大丈夫です。メンバーもほぼ初心者スタート。うまさを競う場ではないので、経験ゼロでも浮きません。見学や途中休憩も自由です。</p></details>
       <details><summary>女性ひとり・一人参加でも馴染める？<span class="pm">＋</span></summary><p>ほとんどの方が一人参加スタート。男女ミックスで激しすぎず、アプリで「誰が来るか」も事前に分かるので、初回から安心です。</p></details>
       <details><summary>退部はいつでもできる？<span class="pm">＋</span></summary><p>いつでもできます。合わなければ気軽に。引き止めは一切しません。</p></details>
     </div>
@@ -277,8 +309,8 @@
     <h2 class="reveal d1">グラウンドで、<span class="r">待ってる。</span></h2>
     <p class="reveal d2">動ける服と、ちょっとの勇気だけ持って来てください。あなたの居場所、もう用意してあります。</p>
     <div class="cta-row reveal d3">
-      <a class="btn btn-red" href="#">入部する</a>
-      <a class="btn btn-ghost" href="#">まずは体験する</a>
+      <a class="btn btn-red" href="#">無料で入部する</a>
+      <a class="btn btn-ghost" href="#ai">AI自習室を見る</a>
     </div>
   </div>
 </section>
@@ -287,28 +319,33 @@
 </div>
 
 <script>
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  function revealScan(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<vh*0.92 && r.bottom>0) el.classList.add('in');
+    });
+  }
+  revealScan();
+  window.addEventListener('scroll',revealScan,{passive:true});
+  window.addEventListener('resize',revealScan);
   document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('in'); });
 
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click',function(e){ var id=a.getAttribute('href'); if(id.length<2)return; var t=document.querySelector(id); if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});} });
   });
 
-  var pn=document.getElementById('pn'), done=false;
-  var pio=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting && !done){ done=true; var t=1980,s=null;
-      function step(ts){ if(!s)s=ts; var p=Math.min((ts-s)/900,1); pn.textContent=Math.round(t*p).toLocaleString(); if(p<1)requestAnimationFrame(step); }
-      requestAnimationFrame(step); } });
-  },{threshold:.6});
   var ub=document.getElementById('unlockBtn'), gate=document.querySelector('.gate');
   if(ub&&gate)ub.onclick=function(){
     gate.classList.add('opening');
-    setTimeout(function(){ document.body.classList.add('show-site'); window.scrollTo(0,0); }, 750);
+    setTimeout(function(){
+      document.body.classList.add('show-site');
+      window.scrollTo(0,0);
+      document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('in'); });
+      revealScan();
+      setTimeout(revealScan,120);
+    }, 750);
   };
-  if(pn)pio.observe(pn);
 </script>
 </body>
 </html>
