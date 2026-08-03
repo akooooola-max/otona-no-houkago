@@ -403,13 +403,13 @@
     revealScan(); [120,500,1000].forEach(function(t){ setTimeout(revealScan,t); });
   }
 
-  try{ if(localStorage.getItem(KEY)==='1') enterSite(); }catch(e){}
+  /* 毎回ロック画面から始める（解錠状態は記憶しない） */
+  try{ localStorage.removeItem(KEY); }catch(e){}
 
   if(pwForm)pwForm.addEventListener('submit',function(e){
     e.preventDefault();
     if(OK.indexOf(hash(norm(pwInput.value)))>-1){
       pwForm.classList.remove('bad');
-      try{ localStorage.setItem(KEY,'1'); }catch(e){}
       document.getElementById('unlockBtn').textContent='開きました…';
       gate.classList.add('opening');
       setTimeout(enterSite, 750);
