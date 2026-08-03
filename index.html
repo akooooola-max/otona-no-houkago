@@ -371,7 +371,10 @@
   (function(){
     [['lineBtn',LINE_URL],['noteBtn',NOTE_URL]].forEach(function(p){
       var b=document.getElementById(p[0]);
-      if(b&&p[1]){ b.href=p[1]; b.target="_blank"; b.rel="noopener"; }
+      if(!b||!p[1]) return;
+      b.href=p[1]; b.rel="noopener";
+      /* アプリ内ブラウザでは新規タブが開けないことがあるため、同じタブで確実に遷移させる */
+      b.addEventListener('click',function(e){ e.preventDefault(); location.href=p[1]; });
     });
   })();
 
