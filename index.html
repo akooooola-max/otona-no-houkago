@@ -32,7 +32,14 @@
 
   .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(120% 80% at 80% 0%,#12245e,transparent 55%),radial-gradient(90% 70% at 0% 100%,#1a0a1f,transparent 55%),var(--bg)}
   .hero-fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-  .grid-fx{position:absolute;inset:-2px;background:linear-gradient(rgba(59,123,255,.14) 1px,transparent 1px) 0 0/100% 46px,linear-gradient(90deg,rgba(59,123,255,.11) 1px,transparent 1px) 0 0/46px 100%;-webkit-mask:radial-gradient(85% 75% at 50% 42%,#000 26%,transparent 80%);mask:radial-gradient(85% 75% at 50% 42%,#000 26%,transparent 80%)}
+  .grid-fx{position:absolute;inset:0;background:
+    radial-gradient(60% 42% at 20% 16%,rgba(59,123,255,.30),transparent 68%),
+    radial-gradient(52% 38% at 84% 28%,rgba(255,45,79,.16),transparent 68%),
+    radial-gradient(70% 48% at 66% 82%,rgba(59,123,255,.18),transparent 70%),
+    radial-gradient(48% 34% at 8% 76%,rgba(122,92,255,.16),transparent 70%)}
+  .hero-fx:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+    background-image:radial-gradient(rgba(255,255,255,.45) 0.5px,transparent 0.6px);background-size:3px 3px;
+    -webkit-mask:radial-gradient(80% 70% at 50% 40%,#000,transparent 78%);mask:radial-gradient(80% 70% at 50% 40%,#000,transparent 78%)}
   .streak{position:absolute;width:190%;height:2px;left:-45%;transform:rotate(-18deg);opacity:0;animation:sweep 5.5s linear infinite}
   .streak.b{background:linear-gradient(90deg,transparent,rgba(106,160,255,.85),transparent)}
   .streak.r{background:linear-gradient(90deg,transparent,rgba(255,45,79,.75),transparent);animation-duration:7s;animation-delay:-3s}
