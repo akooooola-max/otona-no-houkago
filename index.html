@@ -102,6 +102,17 @@
   .scrollcue .line{width:1px;height:34px;background:linear-gradient(var(--blue-bright),transparent);margin:8px auto 0;animation:pulse 1.8s ease-in-out infinite}
   @keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 
+  .nextday{background:linear-gradient(180deg,rgba(255,45,79,.10),transparent);text-align:center}
+  .nextcard{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;
+    background:var(--panel);border:1.5px solid var(--red);border-radius:18px;padding:26px 22px}
+  .nd-date{display:flex;align-items:baseline;gap:2px;color:#fff}
+  .nd-m{font-size:34px;font-weight:900;letter-spacing:-.02em}
+  .nd-d{font-size:52px;font-weight:900;letter-spacing:-.03em;margin-left:6px}
+  .nd-s{font-size:16px;font-weight:800;color:var(--muted)}
+  .nd-info{text-align:left}
+  .nd-place{font-size:20px;font-weight:900;color:#fff}
+  .nd-fee{margin-top:4px;font-size:14px;font-weight:800;color:#5ce89a}
+  .nd-note{margin-top:14px;font-size:13px;color:var(--muted)}
   .statement h2{font-size:clamp(24px,6.4vw,38px)}
   .statement .em{color:#fff;border-bottom:3px solid var(--red);padding-bottom:2px}
   .checks{margin-top:34px;display:flex;flex-direction:column;gap:14px}
@@ -223,6 +234,20 @@
   <div class="scrollcue">SCROLL<div class="line"></div></div>
 </section>
 
+<section class="sec nextday">
+  <div class="wrap">
+    <p class="eyebrow reveal">次回の活動</p>
+    <div class="nextcard reveal d1">
+      <div class="nd-date"><span class="nd-m">8</span><span class="nd-s">月</span><span class="nd-d">25</span><span class="nd-s">日</span></div>
+      <div class="nd-info">
+        <p class="nd-place">LaPlus</p>
+        <p class="nd-fee">参加費 無料</p>
+      </div>
+    </div>
+    <p class="nd-note reveal d2">くわしい集合時間は、部室でご案内します。</p>
+  </div>
+</section>
+
 <section class="sec statement">
   <div class="wrap">
     <p class="eyebrow reveal">こんな気持ち、ありませんか</p>
@@ -277,7 +302,7 @@
     <div class="price-card free reveal d2">
       <span class="ribbon">部員（基本）</span>
       <div class="price-num"><span id="pn">0</span><small>円</small></div>
-      <div class="price-note">コミュニティに入るのは無料です。<br>※ フットサルやBBQなどの活動には、<br>都度の参加費がかかります。</div>
+      <div class="price-note">コミュニティに入るのも、<br>フットサルへの参加も無料です。</div>
       <ul class="price-incl">
         <li><i>✓</i> 定例フットサルに参加できる</li>
         <li><i>✓</i> 専用アプリで出欠を管理できる</li>
@@ -341,7 +366,7 @@
     <p class="eyebrow reveal">よくある質問</p>
     <h2 class="reveal d1">不安、先に消しておきます。</h2>
     <div style="margin-top:20px" class="reveal d1">
-      <details open><summary>お金はどれくらいかかるの？<span class="pm">＋</span></summary><p>コミュニティに入るのは無料です。<br>ただし、フットサルやBBQなどの活動には、<br>その都度の参加費がかかります。<br>月額がかかるのは「AI社員室」だけ。<br>入りたい人だけが申し込む形です。<br>勝手に課金されることはありません。</p></details>
+      <details open><summary>お金はどれくらいかかるの？<span class="pm">＋</span></summary><p>コミュニティに入るのも、フットサルへの参加も無料です。<br>BBQなど一部のイベントでは実費をいただく場合があります。<br>月額がかかるのは「AI社員室」だけ。<br>入りたい人だけが申し込む形です。<br>勝手に課金されることはありません。</p></details>
       <details><summary>初心者・運動が苦手でも大丈夫？<span class="pm">＋</span></summary><p>大丈夫です。メンバーもほぼ初心者スタート。<br>うまさを競う場ではないので、経験ゼロでも浮きません。<br>見学や途中休憩も自由です。</p></details>
       <details><summary>女性ひとり・一人参加でも馴染める？<span class="pm">＋</span></summary><p>ほとんどの方が一人参加スタート。<br>男女ミックスで激しすぎません。<br>アプリで「誰が来るか」も事前に分かるので、初回から安心です。</p></details>
       <details><summary>AI社員室って何をするの？<span class="pm">＋</span></summary><p>あなたの仕事を代わりにやってくれる<br>「自分専用のAI社員」を、その場でつくります。<br>noteのメンバーシップで開催を告知し、集まって手を動かすハンズオン形式です。<br>プログラミングの知識は要りません。</p></details>
